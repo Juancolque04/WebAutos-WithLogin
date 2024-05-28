@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/frontend/css/styles.css">
+    <title>Configuración - Venta de Autos</title>
+</head>
+
+<body>
+    <nav id="slide-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="autos.html">Autos</a></li>
+            <li id="configuracion-link" style="display: none;"><a href="config.html">Configuración</a></li>
+            <li><a href="/frontend/html/login.html" id="login-link">Login</a></li>
+            <li><a href="#" id="logout-link" style="display: none;">Logout</a></li>
+        </ul>
+    </nav>
+    <div id="content">
+        <div class="menu-trigger"></div>
+        <h1>Configuración de autos</h1>
+        <div id="view-container">
+            <div class="contenedorBtnAgregar">
+                <button id="btnAgregar">agregar</button>
+            </div>
+            <table id="tablaAutos">
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Año</th>
+                        <th>Precio</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="bodyTabla"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="modalAgregar" class="modal">
+        <div class="modal-content">
+            <button class="close-button" id="btnCerrar">&times;</button>
+            <h2>AGREGAR AUTO</h2>
+            <form id="formAgregar">
+                <input placeholder="Imagen" class="input" type="text" id="imagen" name="Imagen" required>
+                <input placeholder="Marca" class="input" type="text" id="marca" name="marca" required>         
+                <input placeholder="Modelo" class="input" type="text" id="modelo" name="modelo" required>           
+                <input placeholder="Año" class="input" type="number" id="anio" name="anio" required>
+                <input placeholder="Precio" class="input" type="number" id="precio" name="precio" required>
+
+                <button type="submit" id="btnSecundarios">Agregar</button>
+            </form>
+        </div>
+    </div>
+
+    
+    <div id="modalModificar" class="modal">
+        <div class="modal-content">
+            <button class="close-button" id="btnCerrarModificar">&times;</button>
+            <h2>MODIFICAR AUTO</h2>
+            <form id="formModificar">
+                <input placeholder="Imagen" class="input" type="text" id="modificarImagen" name="Imagen" required>
+                <input placeholder="Marca" class="input" type="text" id="modificarMarca" name="marca" required>         
+                <input placeholder="Modelo" class="input" type="text" id="modificarModelo" name="modelo" required>           
+                <input placeholder="Año" class="input" type="number" id="modificarAnio" name="anio" required>
+                <input placeholder="Precio" class="input" type="number" id="modificarPrecio" name="precio" required>
+
+                <button type="submit" id="btnSecundarios">Modificar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="/frontend/js/config.js"></script>
+</body>
+
+</html>

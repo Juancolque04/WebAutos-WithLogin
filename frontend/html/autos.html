@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de autos</title>
+    <link rel="stylesheet" href="/frontend/css/styles.css">
+</head>
+
+<body>
+    <nav id="slide-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="autos.html">Autos</a></li>
+            <li id="configuracion-link" style="display: none;"><a href="config.html">Configuración</a></li>
+            <li><a href="/frontend/html/login.html" id="login-link">Login</a></li>
+            <li><a href="#" id="logout-link" style="display: none;">Logout</a></li>
+        </ul>
+    </nav>
+    <!-- Content -->
+    <div id="content">
+        <div class="menu-trigger"></div>
+        <h1>Listado de autos</h1>
+        <div id="view-container"></div>
+    </div>
+   
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="/frontend/js/autos.js"></script>
+</body>
+</html>
