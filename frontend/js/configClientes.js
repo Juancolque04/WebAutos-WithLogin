@@ -40,39 +40,39 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     }
 
-    async function listaAutos() {
+    async function listaClientes() {
         try {
             const token = localStorage.getItem('token');
             const cuerpoTabla = document.getElementById('bodyTabla');
-            const response = await axios.get('http://localhost:3026/autos', {
+            const response = await axios.get('http://localhost:3026/users', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             });
-            const cars = response.data;
+
+            const users = response.data;
             cuerpoTabla.innerHTML = `
-                ${cars.map(car => `
+                ${users.map(user => `
                     <tr>
-                        <td><img src="${car.imagen}" class="car-image"></td>
-                        <td>${car.marca}</td>
-                        <td>${car.modelo}</td>
-                        <td>${car.año}</td>
-                        <td>$${car.precio}</td>
+                        <td>${user.id}</td>
+                        <td>${user.username}</td>
+                        <td>${user.password}</td>
+                        <td>${user.role}</td>
                         <td>
-                            <button id="btnSecundarios" onclick="eliminarAuto(${car.id})">Eliminar</button>
-                            <button id="btnSecundarios" onclick="mostrarModalModificar(${car.id})">Modificar</button>
+                            <button id="btnSecundarios" onclick="eliminarCliente(${user.id})">Eliminar</button>
+                            <button id="btnSecundarios" onclick="mostrarModalModificar(${user.id})">Modificar</button>
                         </td>
                     </tr>
                 `).join('')}
             `;
         } catch (error) {
-            console.error('Error fetching cars:', error);
-            cuerpoTabla.innerHTML = '<p>Error al cargar los autos</p>';
+            console.error('Error fetching users:', error);
+            cuerpoTabla.innerHTML = '<p>Error al cargar los clientes</p>';
         }
     }
 
     verificarAutenticacion();
-    await listaAutos();
+    await listaClientes();
 });
 
 const btnAgregar = document.getElementById('btnAgregar');
@@ -89,55 +89,55 @@ function cerrarModalAgregar() {
 }
 
 const formAgregar = document.getElementById('formAgregar');
-formAgregar.addEventListener('submit', agregarAuto);
+formAgregar.addEventListener('submit', agregarCliente);
 
-async function agregarAuto(event) {
+async function agregarCliente(event) {
     event.preventDefault();
 
-    const imagen = document.getElementById('imagen').value.trim();
-    const marca = document.getElementById('marca').value.trim();
-    const modelo = document.getElementById('modelo').value.trim();
-    const año = document.getElementById('anio').value.trim();
-    const precio = document.getElementById('precio').value.trim();
+    const usuario = document.getElementById('usuario').value.trim();
+    const contraseña = document.getElementById('contraseña').value.trim();
+    const rol = document.getElementById('rol').value.trim();
 
     try {
-        const nuevoAuto = {
-            imagen: imagen,
-            marca: marca,
-            modelo: modelo,
-            año: año,
-            precio: precio
+        const nuevoCliente = {
+            username: usuario,
+            password: contraseña,
+            role: rol
         };
         const token = localStorage.getItem('token');
-        await axios.post('http://localhost:3026/autos', nuevoAuto, {
+        await axios.post('http://localhost:3026/users', nuevoCliente, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         });
-        listaAutos();
+        listaClientes();
         cerrarModalAgregar();
     } catch (error) {
-        console.error('Error al agregar el auto:', error);
+        console.error('Error al agregar el cliente:', error);
     }
 }
 
-let idAutoEditar = 0
+let idUserEditar = 0;
 window.mostrarModalModificar = async (id) => {
-    idAutoEditar = id;
-    const response = await axios.get('http://localhost:3026/autos');
-    const cars = response.data;
+    idUserEditar = id;
+    const token = localStorage.getItem('token');
+    const response = await axios.get('http://localhost:3026/users', {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+    const user = response.data;
 
     const modalModificar = document.getElementById('modalModificar');
     modalModificar.style.display = 'block';
 
-    const autoSeleccionado = cars.find(auto => auto.id === id);
+    const userSeleccionado = user.find(usuario => usuario.id === id);
 
-    if (autoSeleccionado) {
-        document.getElementById('modificarImagen').value = autoSeleccionado.imagen;
-        document.getElementById('modificarMarca').value = autoSeleccionado.marca;
-        document.getElementById('modificarModelo').value = autoSeleccionado.modelo;
-        document.getElementById('modificarAnio').value = autoSeleccionado.año;
-        document.getElementById('modificarPrecio').value = autoSeleccionado.precio;
+    if (userSeleccionado) {
+        document.getElementById('idClienteModificar').value = userSeleccionado.id;
+        document.getElementById('modificarUsuario').value = userSeleccionado.username;
+        document.getElementById('modificarContraseña').value = userSeleccionado.password;
+        document.getElementById('modificarRol').value = userSeleccionado.role;
     }
 }
 
@@ -147,50 +147,46 @@ function cerrarModalModificar() {
 }
 
 const formModificar = document.getElementById('formModificar');
-formModificar.addEventListener('submit', modificarAuto);
+formModificar.addEventListener('submit', modificarCliente);
 
-async function modificarAuto(event) {
+async function modificarCliente(event) {
     event.preventDefault();
 
-    const nImagen = document.getElementById('modificarImagen').value.trim();
-    const nMarca = document.getElementById('modificarMarca').value.trim();
-    const nModelo = document.getElementById('modificarModelo').value.trim();
-    const nAño = parseInt(document.getElementById('modificarAnio').value.trim());
-    const nPrecio = parseFloat(document.getElementById('modificarPrecio').value.trim());
+    const nUsuario = document.getElementById('modificarUsuario').value.trim();
+    const nContraseña = document.getElementById('modificarContraseña').value.trim();
+    const nRol = document.getElementById('modificarRol').value.trim();
 
     try {
         const token = localStorage.getItem('token');
-        await axios.put(`http://localhost:3026/autos/${idAutoEditar}`, {
-            imagen: nImagen,
-            marca: nMarca,
-            modelo: nModelo,
-            año: nAño,
-            precio: nPrecio
+        await axios.put(`http://localhost:3026/users/${idUserEditar}`, {
+            username: nUsuario,
+            password: nContraseña,
+            role: nRol
         }, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         });
-        listaAutos();
+        listaClientes();
         cerrarModalModificar();
     } catch (error) {
-        console.error('Error al modificar el auto:', error);
+        console.error('Error al modificar el cliente:', error);
     }
 }
 
-window.eliminarAuto = async (id) => {
-    const confirmar = confirm('¿Estás seguro que deseas eliminar este auto?');
+window.eliminarCliente = async (id) => {
+    const confirmar = confirm('¿Estás seguro que deseas eliminar este cliente?');
     if (confirmar) {
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`http://localhost:3026/autos/${id}`, {
+            await axios.delete(`http://localhost:3026/users/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             });
-            listaAutos();
+            listaClientes();
         } catch (error) {
-            console.error('Error al eliminar el auto:', error);
+            console.error('Error al eliminar el cliente:', error);
         }
     }
 }

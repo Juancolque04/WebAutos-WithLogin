@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,9 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="autos.html">Autos</a></li>
-            <li id="configuracion-link" style="display: none;"><a href="config.html">Configuración</a></li>
+            <li id="configuracion-autos-link" style="display: none;"><a href="config.html">Configuración Autos</a></li>
+            <li id="configuracion-clientes-link" style="display: none;"><a href="configClientes.html">Configuración
+                    Clientes</a></li>
             <li><a href="/frontend/html/login.html" id="login-link">Login</a></li>
             <li><a href="#" id="logout-link" style="display: none;">Logout</a></li>
         </ul>
@@ -23,9 +26,34 @@
         <h1>Listado de autos</h1>
         <div id="view-container"></div>
     </div>
-   
+
+    <div id="modalComprar" class="modalComprar">
+        <form class="formComprar">
+            <h1 class="titleCreditCard">Tarjeta de credito</h1>
+            <div class="credit-card">
+                <div class="input_container">
+                    <label for="titularCard" class="input_label">Nombre completo del titular de la tarjeta</label>
+                    <input id="titularCard" class="input_field" type="text" placeholder="Ingrese su nombre completo">
+                </div>
+                <div class="input_container">
+                    <label for="NumeroCard" class="input_label">Numero tarjeta</label>
+                    <input id="NumeroCard" class="input_field" type="number" placeholder="0000 0000 0000 0000">
+                </div>
+                <div class="input_container">
+                    <label for="password_field" class="input_label">Fecha de vencimiento / CVV</label>
+                    <div class="split">
+                        <input id="fechaVencimiento" class="input_field" type="text" placeholder="01/23">
+                        <input id="codigo" class="input_field" type="number" placeholder="CVV">
+                    </div>
+                </div>
+            </div>
+            <button class="btnCheckout">Checkout</button>
+        </form>
+    </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="module" src="/frontend/js/autos.js"></script>
 </body>
+
 </html>

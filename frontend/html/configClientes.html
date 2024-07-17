@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configuración autos - Venta de Autos</title>
+    <title>Configuración clientes - Venta de Autos</title>
     <link rel="stylesheet" href="/frontend/css/styles.css">
 </head>
 <body>
@@ -19,19 +19,18 @@
     </nav>
     <div id="content">
         <div class="menu-trigger"></div>
-        <h1>Configuración de autos</h1>
+        <h1>Configuración de clientes</h1>
         <div id="view-container">
             <div class="contenedorBtnAgregar">
                 <button id="btnAgregar">Agregar</button>
             </div>
-            <table id="tablaAutos">
+            <table id="tablaClientes">
                 <thead>
                     <tr>
-                        <th>Imagen</th>
-                        <th>Marca</th>
-                        <th>Modelo</th>
-                        <th>Año</th>
-                        <th>Precio</th>
+                        <th>ID</th>
+                        <th>Usuario</th>
+                        <th>Contraseña</th>
+                        <th>Rol</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -43,13 +42,14 @@
     <div id="modalAgregar" class="modal">
         <div class="modal-content">
             <button class="close-button" id="btnCerrar">&times;</button>
-            <h2>Agregar Auto</h2>
+            <h2>Agregar Cliente</h2>
             <form id="formAgregar">
-                <input placeholder="Imagen" class="input" type="text" id="imagen" name="imagen" required>
-                <input placeholder="Marca" class="input" type="text" id="marca" name="marca" required>
-                <input placeholder="Modelo" class="input" type="text" id="modelo" name="modelo" required>
-                <input placeholder="Año" class="input" type="number" id="anio" name="anio" required>
-                <input placeholder="Precio" class="input" type="number" id="precio" name="precio" required>
+                <input placeholder="Nombre de usuario" class="input" type="text" id="usuario" name="usuario" required>
+                <input placeholder="Contraseña" class="input" type="text" id="contraseña" name="contraseña" required>
+                <select id="rol" name="rol" class="input" required>
+                    <option value="admin">Admin</option>
+                    <option value="usuario">Usuario</option>
+                </select>
                 <button type="submit" id="btnSecundarios">Agregar</button>
             </form>
         </div>
@@ -58,19 +58,21 @@
     <div id="modalModificar" class="modal">
         <div class="modal-content">
             <button class="close-button" id="btnCerrarModificar">&times;</button>
-            <h2>Modificar Auto</h2>
+            <h2>Modificar Cliente</h2>
             <form id="formModificar">
-                <input placeholder="Imagen" class="input" type="text" id="modificarImagen" name="imagen" required>
-                <input placeholder="Marca" class="input" type="text" id="modificarMarca" name="marca" required>
-                <input placeholder="Modelo" class="input" type="text" id="modificarModelo" name="modelo" required>
-                <input placeholder="Año" class="input" type="number" id="modificarAnio" name="anio" required>
-                <input placeholder="Precio" class="input" type="number" id="modificarPrecio" name="precio" required>
+                <input type="hidden" id="idClienteModificar" name="id">
+                <input placeholder="Nombre de usuario" class="input" type="text" id="modificarUsuario" name="usuario" required>
+                <input placeholder="Contraseña" class="input" type="text" id="modificarContraseña" name="contraseña" required>
+                <select id="modificarRol" name="rol" class="input" required>
+                    <option value="admin">Admin</option>
+                    <option value="usuario">Usuario</option>
+                </select>
                 <button type="submit" id="btnSecundarios">Modificar</button>
             </form>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script type="module" src="/frontend/js/config.js"></script>
+    <script type="module" src="/frontend/js/configClientes.js"></script>
 </body>
 </html>

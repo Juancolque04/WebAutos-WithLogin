@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     const loginLink = document.getElementById('login-link');
     const logoutLink = document.getElementById('logout-link');
-    const configLink = document.getElementById('configuracion-link');
+    const configAutosLink = document.getElementById('configuracion-autos-link');
+    const configClientesLink = document.getElementById('configuracion-clientes-link');
     const viewContainer = document.getElementById('view-container');
 
     logoutLink.addEventListener('click', () => logout());
@@ -29,12 +30,14 @@ document.addEventListener('DOMContentLoaded', async function () {
 
             const payload = JSON.parse(atob(token.split('.')[1]));
             if (payload.role === 'admin') {
-                configLink.style.display = 'block';
+                configAutosLink.style.display = 'block';
+                configClientesLink.style.display = 'block';
             }
         } else {
             loginLink.style.display = 'block';
             logoutLink.style.display = 'none';
-            configLink.style.display = 'none';
+            configAutosLink.style.display = 'none';
+            configClientesLink.style.display = 'none';
         }
     }
 
@@ -48,10 +51,15 @@ document.addEventListener('DOMContentLoaded', async function () {
                         <div class="card">
                             <img src="${car.imagen}" alt="${car.marca} ${car.modelo}" class="card__image">
                             <div class="card__content">
-                                <p class="card__title">${car.marca}</p>
-                                <p class="card__title">${car.modelo}</p>
-                                <p class="card__title">${car.año}</p>
-                                <p class="card__title">$${car.precio}</p>
+                                 <div class="card__text">
+                                     <p class="card__title">${car.marca}</p>
+                                     <p class="card__title">${car.modelo}</p>
+                                     <p class="card__title">${car.año}</p>
+                                     <p class="card__title">$${car.precio}</p>
+                                 </div>
+                                 <div class="card__button">
+                                     <button class="btnComprar" onclick="mostrarModalComprar(${car.id})" >Comprar</button>
+                                 </div>
                             </div>
                         </div>
                     `).join('')}
@@ -66,3 +74,14 @@ document.addEventListener('DOMContentLoaded', async function () {
     verificarAutenticacion();
     await mostrarAutos();
 });
+
+
+window.mostrarModalComprar = async (id) => {
+    const modalComprar = document.getElementById('modalComprar');
+    modalComprar.style.display = 'block';
+}
+
+document.querySelector('.btnCheckout').addEventListener('click', function() {
+    alert('Compra exitosa');
+});
+

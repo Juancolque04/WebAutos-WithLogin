@@ -1,6 +1,6 @@
 import express from 'express';
 import fs from 'fs';
-import bcrypt from 'bcrypt'; // Para cifrar las contraseñas
+import bcrypt from 'bcrypt'; 
 import jwt from 'jsonwebtoken';
 
 const router = express.Router();

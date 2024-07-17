@@ -117,9 +117,7 @@ nav#slide-menu>ul li:hover {
 
 nav#slide-menu ul li a {
   color: inherit;
-  /* Hereda el color del texto del elemento padre */
   text-decoration: none;
-  /* Quita el subrayado predeterminado */
 }
 
 nav#slide-menu>ul li:before {
@@ -220,10 +218,8 @@ body.menu-active div#content .menu-trigger {
 .contenedorCards {
   margin-top: 50px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columnas con el mismo ancho */
-  gap: 20px; /* Espacio entre las tarjetas */
-  
- 
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
 .card {
@@ -262,10 +258,15 @@ body.menu-active div#content .menu-trigger {
   transform: rotateX(-90deg);
   transform-origin: bottom;
   transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
 }
 
 .card:hover .card__content {
   transform: rotateX(0deg);
+}
+
+.card__text {
+  flex: 1;
 }
 
 .card__title {
@@ -275,8 +276,58 @@ body.menu-active div#content .menu-trigger {
   font-weight: 700;
 }
 
+.card__button {
+  align-self: flex-end;
+  margin-top: 10px;
+}
+
 .card:hover img {
   transform: scale(0);
+}
+
+.btnComprar {
+  width: 130px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: #234666;
+  font-weight: 600;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 5px 5px 10px rgba(17, 25, 60, 0.178);
+  position: relative;
+  overflow: hidden;
+  transition-duration: .3s;
+}
+
+.btnComprar:hover {
+  background-color: #0d1f30;
+  color: white;
+}
+
+.btnComprar::before {
+  width: 130px;
+  height: 130px;
+  position: absolute;
+  content: "";
+  border-radius: 50%;
+  left: -100%;
+  top: 0;
+  transition-duration: .3s;
+  mix-blend-mode: difference;
+}
+
+.btnComprar:hover::before {
+  transition-duration: .3s;
+  transform: translate(100%, -50%);
+  border-radius: 0;
+}
+
+.btnComprar:active {
+  transform: translate(5px, 5px);
+  transition-duration: .3s;
 }
 
 /* tabla para mostrar autos */
@@ -403,48 +454,30 @@ td {
 .modal {
   color: #FFFFFF;
   display: none;
-  /* Por defecto, el modal está oculto */
   position: fixed;
-  /* Posición fija para que el modal esté siempre en la misma posición en la ventana */
   z-index: 1000;
-  /* Z-index alto para asegurarse de que esté por encima de otros elementos */
   left: 50%;
-  /* Colocar el modal en el centro horizontalmente */
   top: 50%;
-  /* Colocar el modal en el centro verticalmente */
   transform: translate(-50%, -50%);
-  /* Centrar el modal en la página */
   background-color: rgba(0, 0, 0, 0.5);
-  /* Fondo semitransparente para el modal */
   width: 80%;
-  /* Ancho del modal */
   max-width: 600px;
-  /* Ancho máximo del modal */
 }
 
 .modal-content {
   background-color: #0e2941da;
-  /* Fondo blanco para el contenido del modal */
   padding: 20px;
-  /* Espaciado interno del contenido del modal */
   border-radius: 5px;
-  /* Bordes redondeados para el contenido del modal */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* Sombra para el modal */
   text-align: center;
 }
 
 .close-button {
   position: absolute;
-  /* Posición absoluta para el botón de cerrar */
   top: 10px;
-  /* Distancia superior del botón de cerrar */
   right: 10px;
-  /* Distancia derecha del botón de cerrar */
   cursor: pointer;
-  /* Cambiar el cursor a mano cuando pasa sobre el botón de cerrar */
   font-size: 20px;
-  /* Tamaño de fuente del botón de cerrar */
 }
 
 .modal-content form {
@@ -478,3 +511,119 @@ td {
 h1 {
   text-align: center;
 }
+
+/*BANNER*/
+.banner {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.banner img {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+}
+
+/*modal comprar */
+.modalComprar {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+  height: fit-content;
+  background: #0e2941;
+  box-shadow: 0px 187px 75px rgba(0, 0, 0, 0.01), 0px 105px 63px rgba(0, 0, 0, 0.05), 0px 47px 47px rgba(0, 0, 0, 0.09), 0px 12px 26px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 26px;
+  max-width: 450px;
+}
+
+.titleCreditCard {
+  color: white;
+}
+
+.formComprar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.credit-card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input_container {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  gap: 15px;
+}
+
+.split input {
+  width: 100%;
+}
+
+.input_label {
+  font-size: 14px;
+  color: #a8a8a8;
+  font-weight: 600;
+}
+
+.input_field {
+  width: 350px;
+  height: 40px;
+  padding: 0 0 0 16px;
+  border-radius: 9px;
+  outline: none;
+  background-color: #F2F2F2;
+  border: 1px solid #e5e5e500;
+  transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+
+.input_field:focus {
+  border: 1px solid;
+  box-shadow: 0px 0px 0px 2px #242424;
+}
+
+.btnCheckout {
+  height: 55px;
+  background: #F2F2F2;
+  border-radius: 11px;
+  border: 0;
+  outline: none;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  background: rgb(88, 151, 25);
+  box-shadow: 0px 0px 0px 0px #FFFFFF, 0px 0px 0px 0px #000000;
+  transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+
+.btnCheckout:hover {
+  box-shadow: 0px 0px 0px 2px #FFFFFF, 0px 0px 0px 4px #0000003a;
+}
+
+#codigo {
+  width: 60px;
+}
+
+#fechaVencimiento {
+  width: 150px;
+}
+

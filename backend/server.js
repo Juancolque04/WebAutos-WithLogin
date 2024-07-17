@@ -1,6 +1,7 @@
 import express from 'express';
 import authRoutes from './routes/auth.js'; // Importa las rutas de auth.js
 import autosRoutes from './routes/autos.js'
+import usersRoutes from './routes/users.js'
 import cors from 'cors';
 
 const app = express();
@@ -15,6 +16,8 @@ app.use(express.json());
 app.use('/auth', authRoutes);
 //Utiliza las rutas de autenticación desde cars.js
 app.use('/autos', autosRoutes);
+// Utiliza las nuevas rutas de clientes desde clientes.js
+app.use('/users', usersRoutes);
 
 app.listen(port, ()=> {
     console.log(`Servidor corriendo en el puerto ${port}`)
