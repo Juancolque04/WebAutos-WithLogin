@@ -51,10 +51,10 @@ const registerUser = (username, password, role) => {
 
     // Crear un nuevo usuario
     const newUser = {
-        id: data.users.length + 1,
+        id: data.users.length ? data.users[data.users.length - 1].id + 1 : 1,
         username,
         password: hashedPassword,
-        role
+        role: "usuario"
     };
 
     // Agregar el nuevo usuario a los datos
@@ -73,7 +73,7 @@ router.post('/login', (req, res) => {
         // Generar token JWT
         const token = jwt.sign({ username: user.username, role: user.role }, 'your_secret_key', { expiresIn: '1h' });
         res.status(200).json({
-            message: 'Login successful',
+            message: 'Inicio de sesión exitoso',
             token: token,
             user: {
                 id: user.id,
@@ -83,7 +83,7 @@ router.post('/login', (req, res) => {
         });
     } else {
         res.status(401).json({
-            message: 'Invalid credentials'
+            message: 'Credenciales no válidas'
         });
     }
 });
@@ -97,7 +97,7 @@ router.post('/register', (req, res) => {
     if (newUser) {
         // Si el registro es exitoso, responder con información del nuevo usuario
         res.status(201).json({
-            message: 'Registration successful',
+            message: 'Registro exitoso',
             user: {
                 id: newUser.id,
                 username: newUser.username,
@@ -107,7 +107,7 @@ router.post('/register', (req, res) => {
     } else {
         // Si el registro falla, responder con un mensaje de error
         res.status(400).json({
-            message: 'Registration failed'
+            message: 'Registro fallido'
         });
     }
 });

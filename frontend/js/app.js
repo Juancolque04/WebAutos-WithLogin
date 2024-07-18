@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
             configClientesLink.style.display = 'none';
 
             // Actualizar el mensaje de bienvenida con un enlace al formulario de login
-            welcomeMessage.innerHTML = 'Por favor, <a href="/frontend/html/login.html">regístrate</a> para poder comprar un auto.';
+            welcomeMessage.innerHTML = 'Por favor, <a href="/frontend/html/login.html">Iniciar Sesión</a> para poder comprar un auto.';
         }
     }
 
