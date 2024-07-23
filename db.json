@@ -26,7 +26,8 @@
             "marca": "Ford",
             "modelo": "Mustang",
             "año": 2022,
-            "precio": 23000
+            "precio": 23000,
+            "tipo": "auto"
         },
         {
             "id": 4,
@@ -34,47 +35,53 @@
             "marca": "Ford",
             "modelo": "Raptor",
             "año": 2023,
-            "precio": 50000
+            "precio": 50000,
+            "tipo": "camioneta"
         },
         {
             "id": 5,
             "imagen": "https://tn.com.ar/resizer/oSEuht01hRYz8dcSg9mpRXgqNcU=/1440x0/smart/filters:format(webp)/cloudfront-us-east-1.images.arcpublishing.com/artear/2G36JWOGFRA6BGR4WHQY2PW54M.jpg",
             "marca": "Volkswagen",
             "modelo": "Gol Trend 1.6",
-            "año": "2021",
-            "precio": "11500"
+            "año": 2021,
+            "precio": 11500,
+            "tipo": "auto"
         },
         {
             "id": 6,
             "imagen": "https://acnews.blob.core.windows.net/imgnews/medium/NAZ_55794383b5d040ac9f75544e17bde84c.webp",
             "marca": "Toyota",
             "modelo": "Hilux",
-            "año": "2024",
-            "precio": "50.000"
+            "año": 2024,
+            "precio": 50,
+            "tipo": "camioneta"
         },
         {
             "id": 7,
             "imagen": "https://www.clarin.com/2023/09/08/lO-2v3pFU_2000x1500__1.jpg",
             "marca": "Volkswagen",
             "modelo": "Vento",
-            "año": "2020",
-            "precio": "30.000"
+            "año": 2020,
+            "precio": 30,
+            "tipo": "auto"
         },
         {
             "id": 8,
             "imagen": "https://media.diariouno.com.ar/p/a07129512cfab480905c7534987c6ed6/adjuntos/298/imagenes/009/205/0009205706/1200x0/smart/fiat-cronosjpg.jpg",
             "marca": "Fiat",
             "modelo": "Cronos",
-            "año": "2021",
-            "precio": "20.000"
+            "año": 2021,
+            "precio": 20,
+            "tipo": "auto"
         },
         {
             "id": 9,
             "imagen": "https://www.clarin.com/2020/08/03/dr4MplcOQ_1200x0__2.jpg",
             "marca": "Peugeot",
             "modelo": "208",
-            "año": "2023",
-            "precio": "123.000"
+            "año": 2023,
+            "precio": 123,
+            "tipo": "auto"
         },
         {
             "id": 10,
@@ -82,7 +89,8 @@
             "marca": "Ford",
             "modelo": "Fiesta",
             "año": 2022,
-            "precio": 20000
+            "precio": 20000,
+            "tipo": "auto"
         }
     ]
 }

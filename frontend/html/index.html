@@ -30,6 +30,12 @@
 
         <!-- Content autos -->
         <h1>Listado de autos</h1>
+        <!-- Filtros -->
+        <div id="filter-container">
+            <button class="filter-button" onclick="filtrarAutos('todos')">Todos</button>
+            <button class="filter-button" onclick="filtrarAutos('auto')">Autos</button>
+            <button class="filter-button" onclick="filtrarAutos('camioneta')">Camionetas</button>
+        </div>
         <div id="view-container"></div>
     </div>
 
@@ -37,6 +43,7 @@
     <div id="modalFormaPago" class="modalFormaPago">
         <div class="payment-method-container">
             <p class="title">Método de pago</p>
+            <!-- Métodos de pago -->
             <label class="payment-option">
                 <div class="icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"

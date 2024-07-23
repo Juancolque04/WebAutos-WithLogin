@@ -22,37 +22,37 @@ document.addEventListener('DOMContentLoaded', async function () {
         window.location.href = '/frontend/html/index.html';
     }
 
-
     function verificarAutenticacion() {
         const token = localStorage.getItem('token');
         if (token) {
             loginLink.style.display = 'none';
             logoutLink.style.display = 'block';
 
-            // Decodificar el token para obtener el rol del usuario
             const payload = JSON.parse(atob(token.split('.')[1]));
             if (payload.role === 'admin') {
                 configAutosLink.style.display = 'block';
                 configClientesLink.style.display = 'block';
             }
 
-            // Actualizar el mensaje de bienvenida
             welcomeMessage.textContent = `¡Bienvenido, ${payload.username}!`;
         } else {
             loginLink.style.display = 'block';
             logoutLink.style.display = 'none';
             configAutosLink.style.display = 'none';
             configClientesLink.style.display = 'none';
-
-            // Actualizar el mensaje de bienvenida con un enlace al formulario de login
             welcomeMessage.innerHTML = 'Por favor, <a href="/frontend/html/login.html">Iniciar Sesión</a> para poder comprar un auto.';
         }
     }
 
-    async function mostrarAutos() {
+    async function mostrarAutos(tipoFiltro = 'todos') {
         try {
             const response = await axios.get('http://localhost:3026/autos');
-            const cars = response.data;
+            let cars = response.data;
+
+            if (tipoFiltro !== 'todos') {
+                cars = cars.filter(car => car.tipo === tipoFiltro);
+            }
+
             viewContainer.innerHTML = `
                 <div class="contenedorCards">
                     ${cars.map(car => `
@@ -81,11 +81,15 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     verificarAutenticacion();
     await mostrarAutos();
+
+    window.filtrarAutos = (tipo) => {
+        mostrarAutos(tipo);
+    };
 });
 
 let autoIdSeleccionado = null;
-window.abrirModalFormaPago = (autoId) =>  {
-    autoIdSeleccionado = autoId; // Guardar el ID del auto seleccionado
+window.abrirModalFormaPago = (autoId) => {
+    autoIdSeleccionado = autoId; 
     const modalFormaPago = document.getElementById('modalFormaPago');
     modalFormaPago.style.display = 'block';
 
@@ -99,4 +103,3 @@ window.abrirModalFormaPago = (autoId) =>  {
         }
     };
 }
-

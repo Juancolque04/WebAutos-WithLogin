@@ -726,3 +726,35 @@ margin-bottom: 20px;
   transition-duration: .3s;
 }
 
+/* Contenedor de filtros */
+#filter-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.filter-text {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.filter-button {
+  background-color: #0e2941;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.filter-button:hover {
+  background-color: #5e8eb5;
+}
+
+.filter-button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}

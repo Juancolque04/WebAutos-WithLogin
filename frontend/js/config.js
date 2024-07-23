@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                         <td>${car.modelo}</td>
                         <td>${car.año}</td>
                         <td>$${car.precio}</td>
+                        <td>${car.tipo}</td>
                         <td>
                             <button id="btnSecundarios" onclick="eliminarAuto(${car.id})">Eliminar</button>
                             <button id="btnSecundarios" onclick="mostrarModalModificar(${car.id})">Modificar</button>
@@ -99,6 +100,7 @@ async function agregarAuto(event) {
     const modelo = document.getElementById('modelo').value.trim();
     const año = document.getElementById('anio').value.trim();
     const precio = document.getElementById('precio').value.trim();
+    const tipo = document.getElementById('tipo').value.trim();
 
     try {
         const nuevoAuto = {
@@ -106,7 +108,8 @@ async function agregarAuto(event) {
             marca: marca,
             modelo: modelo,
             año: año,
-            precio: precio
+            precio: precio,
+            tipo: tipo
         };
         const token = localStorage.getItem('token');
         await axios.post('http://localhost:3026/autos', nuevoAuto, {
@@ -121,7 +124,7 @@ async function agregarAuto(event) {
     }
 }
 
-let idAutoEditar = 0
+let idAutoEditar = 0;
 window.mostrarModalModificar = async (id) => {
     idAutoEditar = id;
     const response = await axios.get('http://localhost:3026/autos');
@@ -138,8 +141,9 @@ window.mostrarModalModificar = async (id) => {
         document.getElementById('modificarModelo').value = autoSeleccionado.modelo;
         document.getElementById('modificarAnio').value = autoSeleccionado.año;
         document.getElementById('modificarPrecio').value = autoSeleccionado.precio;
+        document.getElementById('modificarTipo').value = autoSeleccionado.tipo;
     }
-}
+};
 
 document.getElementById('btnCerrarModificar').addEventListener('click', cerrarModalModificar);
 function cerrarModalModificar() {
@@ -157,6 +161,7 @@ async function modificarAuto(event) {
     const nModelo = document.getElementById('modificarModelo').value.trim();
     const nAño = parseInt(document.getElementById('modificarAnio').value.trim());
     const nPrecio = parseFloat(document.getElementById('modificarPrecio').value.trim());
+    const nTipo = document.getElementById('modificarTipo').value.trim();
 
     try {
         const token = localStorage.getItem('token');
@@ -165,7 +170,8 @@ async function modificarAuto(event) {
             marca: nMarca,
             modelo: nModelo,
             año: nAño,
-            precio: nPrecio
+            precio: nPrecio,
+            tipo: nTipo
         }, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -193,4 +199,4 @@ window.eliminarAuto = async (id) => {
             console.error('Error al eliminar el auto:', error);
         }
     }
-}
+};
