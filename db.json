@@ -14,9 +14,9 @@
         },
         {
             "id": 7,
-            "username": "prueba",
-            "password": "$2b$10$hTss7A7SDCO0IMUtGM3agePQW85HY.1VWFo63NmkKk/Ac.ZD2Tv4e",
-            "role": "admin"
+            "username": "raul",
+            "password": "$2b$10$d79Equw8j4tymZB9eRV/t.lhmoMHdwcgibw.XbS69t.oekIL5f7jW",
+            "role": "usuario"
         }
     ],
     "cars": [

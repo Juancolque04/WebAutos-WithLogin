@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const autoId = urlParams.get('autoId');
+    const modelo = urlParams.get('modelo');
     const metodoPago = urlParams.get('metodoPago');
 
     const token = localStorage.getItem('token');
@@ -106,12 +107,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cardholderName && cardNumber) {
             const compra = {
                 usuario: username,
-                autoId: autoId,
+                vehiculo: modelo,
                 metodoPago: metodoPago,
             };
             localStorage.setItem('compra', JSON.stringify(compra));
             alert('Pago procesado exitosamente');
-            window.location.href = '/frontend/html/index.html';
+             window.location.href = '/frontend/html/index.html';
         } else {
             alert('Por favor, complete todos los campos');
         }

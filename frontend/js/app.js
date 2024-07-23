@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', async function () {
     const configClientesLink = document.getElementById('configuracion-clientes-link');
     const welcomeMessage = document.getElementById('welcome-message');
     const viewContainer = document.getElementById('view-container');
-    
+
     logoutLink.addEventListener('click', () => logout());
     function logout() {
-        localStorage.removeItem('token'); 
+        localStorage.removeItem('token');
         alert('Sesión cerrada');
         window.location.href = '/frontend/html/index.html';
     }
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                                      <p class="card__title">$${car.precio}</p>
                                  </div>
                                  <div class="card__button">
-                                     <button class="btnComprar" onclick="abrirModalFormaPago(${car.id})" >Comprar</button>
+                                     <button class="btnComprar" onclick="abrirModalFormaPago(${car.id}, '${car.modelo}')" >Comprar</button>
                                  </div>
                             </div>
                         </div>
@@ -88,8 +88,12 @@ document.addEventListener('DOMContentLoaded', async function () {
 });
 
 let autoIdSeleccionado = null;
-window.abrirModalFormaPago = (autoId) => {
-    autoIdSeleccionado = autoId; 
+let modeloAutoSeleccionado = null;
+window.abrirModalFormaPago = (autoId, modelo) => {
+
+    autoIdSeleccionado = autoId;
+    modeloAutoSeleccionado = modelo;
+    
     const modalFormaPago = document.getElementById('modalFormaPago');
     modalFormaPago.style.display = 'block';
 
@@ -97,7 +101,7 @@ window.abrirModalFormaPago = (autoId) => {
     btnSeleccionarPago.onclick = function () {
         const metodoPagoSeleccionado = document.querySelector('input[name="payment"]:checked').value;
         if (metodoPagoSeleccionado) {
-            window.location.href = `/frontend/html/pago.html?autoId=${autoIdSeleccionado}&metodoPago=${metodoPagoSeleccionado}`;
+            window.location.href = `/frontend/html/pago.html?autoId=${autoIdSeleccionado}&modelo=${modeloAutoSeleccionado}&metodoPago=${metodoPagoSeleccionado}`;
         } else {
             alert('Por favor, seleccione un método de pago');
         }
