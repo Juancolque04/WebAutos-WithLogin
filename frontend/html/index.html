@@ -9,12 +9,13 @@
 </head>
 
 <body>
+    <!-- Barra de navegacion -->
     <nav id="slide-menu">
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="autos.html">Autos</a></li>
             <li id="configuracion-autos-link" style="display: none;"><a href="config.html">Configuración Autos</a></li>
-            <li id="configuracion-clientes-link" style="display: none;"><a href="configClientes.html">Configuración Clientes</a></li>
+            <li id="configuracion-clientes-link" style="display: none;"><a href="configClientes.html">Configuración
+                    Clientes</a></li>
             <li><a href="/frontend/html/login.html" id="login-link">Login</a></li>
             <li><a href="#" id="logout-link" style="display: none;">Logout</a></li>
         </ul>
@@ -26,7 +27,52 @@
         <div class="banner">
             <img src="/frontend/assets/banner.png" alt="banner concesionaria">
         </div>
+
+        <!-- Content autos -->
+        <h1>Listado de autos</h1>
         <div id="view-container"></div>
+    </div>
+
+    <!-- Modales -->
+    <div id="modalFormaPago" class="modalFormaPago">
+        <div class="payment-method-container">
+            <p class="title">Método de pago</p>
+            <label class="payment-option">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M0 4a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm22 0H2v4h20V4zM2 12h20v8H2v-8zm1 2v4h4v-4H3zm6 0v4h10v-4H9zm0 2h8v-2H9v2z" />
+                    </svg>
+                </div>
+                <p class="label">Tarjeta de crédito</p>
+                <input type="radio" name="payment" value="credit-card" />
+            </label>
+            <label class="payment-option">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M5 2h14a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 2v4h14V4H5zm0 6v10h14V10H5zm3 5a1 1 0 0 1 1-1h6a1 1 0 0 1 0 2H9a1 1 0 0 1-1-1zm3-4a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2h-2a1 1 0 0 1-1-1z" />
+                    </svg>
+                </div>
+                <p class="label">Mercado Pago</p>
+                <input type="radio" name="payment" value="mercado-pago" />
+            </label>
+            <label class="payment-option">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path d="M2 3h20v4H2V3zm0 6h20v10H2V9zm2 2v6h4v-6H4zm6 0v6h10v-6H10zm2 2h6v2h-6v-2z" />
+                    </svg>
+                </div>
+                <p class="label">Efectivo</p>
+                <input type="radio" name="payment" value="cash" />
+            </label>
+            <div class="btnModal">
+                <button class="btnSeleccionar" id="btnSeleccionarPago">Aceptar</button>
+            </div>
+        </div>
     </div>
 
     <script type="module" src="/frontend/js/app.js"></script>

@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     const body = document.body;
     const menuTrigger = document.querySelector('.menu-trigger');
 
@@ -13,15 +13,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const configAutosLink = document.getElementById('configuracion-autos-link');
     const configClientesLink = document.getElementById('configuracion-clientes-link');
     const welcomeMessage = document.getElementById('welcome-message');
-
+    const viewContainer = document.getElementById('view-container');
+    
     logoutLink.addEventListener('click', () => logout());
     function logout() {
-        localStorage.removeItem('token'); // Elimina el token almacenado
+        localStorage.removeItem('token'); 
         alert('Sesión cerrada');
         window.location.href = '/frontend/html/index.html';
     }
 
-    // Verificar el estado de autenticación
+
     function verificarAutenticacion() {
         const token = localStorage.getItem('token');
         if (token) {
@@ -48,5 +49,54 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    async function mostrarAutos() {
+        try {
+            const response = await axios.get('http://localhost:3026/autos');
+            const cars = response.data;
+            viewContainer.innerHTML = `
+                <div class="contenedorCards">
+                    ${cars.map(car => `
+                        <div class="card">
+                            <img src="${car.imagen}" alt="${car.marca} ${car.modelo}" class="card__image">
+                            <div class="card__content">
+                                 <div class="card__text">
+                                     <p class="card__title">${car.marca}</p>
+                                     <p class="card__title">${car.modelo}</p>
+                                     <p class="card__title">${car.año}</p>
+                                     <p class="card__title">$${car.precio}</p>
+                                 </div>
+                                 <div class="card__button">
+                                     <button class="btnComprar" onclick="abrirModalFormaPago(${car.id})" >Comprar</button>
+                                 </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        } catch (error) {
+            console.error('Error fetching cars:', error);
+            viewContainer.innerHTML = '<p>Error al cargar los autos</p>';
+        }
+    }
+
     verificarAutenticacion();
+    await mostrarAutos();
 });
+
+let autoIdSeleccionado = null;
+window.abrirModalFormaPago = (autoId) =>  {
+    autoIdSeleccionado = autoId; // Guardar el ID del auto seleccionado
+    const modalFormaPago = document.getElementById('modalFormaPago');
+    modalFormaPago.style.display = 'block';
+
+    const btnSeleccionarPago = document.getElementById('btnSeleccionarPago');
+    btnSeleccionarPago.onclick = function () {
+        const metodoPagoSeleccionado = document.querySelector('input[name="payment"]:checked').value;
+        if (metodoPagoSeleccionado) {
+            window.location.href = `/frontend/html/pago.html?autoId=${autoIdSeleccionado}&metodoPago=${metodoPagoSeleccionado}`;
+        } else {
+            alert('Por favor, seleccione un método de pago');
+        }
+    };
+}
+
